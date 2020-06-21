@@ -76,7 +76,6 @@ class MainActivity : BaseActivity() {
 
         chatList.add(Chat("CPU", "${strikeCount}S ${ballCount}B 입니다."))
 
-        //만약 3S 라고 하면 => 정답 맞춘 상황. 축하메세지 + 게임종료
         if ( strikeCount == 3) {
             chatList.add(Chat("CPU", "축하합니다.") )
 
@@ -91,10 +90,8 @@ class MainActivity : BaseActivity() {
 
     override fun setValues() {
 
-        // 정답이 될 문제를 미리 만들어 두자.
         makeQuestionNum()
 
-        //로그로 정답을 미리 확인
         for (num in cpuNumList ){
             Log.d("문제 출제", num.toString())
         }
@@ -108,38 +105,30 @@ class MainActivity : BaseActivity() {
     }
 
     fun makeQuestionNum() {
-        //세자리 숫자를 만든다 => 한자리씩 배열에 저장. EX) 741 => 7, 4, 1
+
 
         for (i in 0..2) {
-            // 조건에 맞는 숫자가 나오면 배열에 대입.
-            // 조건에 안맞는 숫자가 나오면 다시 뽑자.
-            // 조건에 맞는 숫자가 뽑힐때 까지 계속 뽑자
 
             while (true) {
 
-                // 0+1 <= (Math.random()*9+1).toInt() < 10
-                // 우리가 원하는 숫자 : 0 제외. 1~9 를 뽑고 싶다.
                 val randomNum = (Math.random()*9 + 1).toInt()
 
-                //중복된 숫자면 안됨. => 문제 배열을 보고 같은 숫자가 있는지?
-                //있다면 사용 불가 (중복)
 
-                //일단 써도 된다고 했다가 => 검사결과 같은게 있다면 => 쓰면 안된다고 할것임.
                 var duplCheckResult = true
 
                 for (num in cpuNumList) {
                     if (num == randomNum){
-                        //문제에 같은 숫자가 있다. => 사용하면 안된다.
+
                         duplCheckResult = false
                     }
 
                 }
 
-                //1~9 사이의 랜덤숫자가 중복검사를 통과 했는지?
+
                 if (duplCheckResult) {
-                    //써도 되는 숫자니까 출제 숫자에 등록.
+
                     cpuNumList.add(randomNum)
-                    //무한 반복을 깨고 다음 숫자를 뽑으로 이동.
+
                     break
                 }
 
