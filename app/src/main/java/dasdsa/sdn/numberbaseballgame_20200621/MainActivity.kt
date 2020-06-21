@@ -62,6 +62,38 @@ class MainActivity : BaseActivity() {
         numArr.add( number/10 % 10)    //10의자리 5
         numArr.add( number % 10)    //1의자리 6
 
+        //찾은  S / B 갯수를 저장할 변수
+        var strikeCount = 0
+        var ballCount = 0
+
+        //내 입력가븡ㄹ 돌아주는 반복 : i가 내 숫자들을 담당
+        for ( i in numArr.indices) {
+
+            //문제 숫자를 돌아주는 반복 : j 가 컴퓨터 숫자들 담당
+            for ( j in cpuNumList.indices) {
+
+                //내 숫자와 cpu 숫자가 같은가?
+                if (numArr[i] == cpuNumList[j] ){
+                    //위치도 같은가?
+                    if ( i == j )
+                    {
+                        //같다면 S 하나 더 찾았다.
+                        strikeCount ++
+                    }
+                    else {
+                        //숫자는 같지만, 위치가 다르면 B 하나더 찾았다.
+                        ballCount ++
+                    }
+                }
+
+            }
+        }
+
+        // ?S, ?B 판단이 모두 끝남.
+        //결과를 cpu가 답장
+
+        chatList.add(Chat("CPU", "${strikeCount}S ${ballCount}B 입니다."))
+
     }
 
     override fun setValues() {
