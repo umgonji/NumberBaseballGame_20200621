@@ -126,7 +126,6 @@ class MainActivity : BaseActivity() {
 
                 }
 
-
                 if (duplCheckResult) {
 
                     cpuNumList.add(randomNum)
