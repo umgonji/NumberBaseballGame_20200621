@@ -14,6 +14,7 @@ class MainActivity : BaseActivity() {
     val cpuNumList = ArrayList<Int>()
 
     val chatList = ArrayList<Chat>()
+
     lateinit var mChatAdapter : ChatAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,6 +100,7 @@ class MainActivity : BaseActivity() {
         chatList.add(Chat("CPU", "세자리 숫자를 맞춰 주세요."))
         chatList.add(Chat("CPU", "0은 포함되지 않으며, 중복된 숫자도 없습니다."))
 
+        //CharAdapter
         mChatAdapter = ChatAdapter(mContext, R.layout.chat_list_item, chatList)
         chatListView.adapter = mChatAdapter
 
