@@ -11,6 +11,9 @@ import kotlin.math.log
 
 class MainActivity : BaseActivity() {
 
+    // 몇번이나 답안을 입력했는지 저장할 변수
+    var inputTryCount = 0
+
     //문자로 나온 숫자를 담는 배열
     val cpuNumList = ArrayList<Int>()
 
@@ -52,6 +55,9 @@ class MainActivity : BaseActivity() {
     }
 
     fun CheckUserInputStrikeAndBall(input : String) {
+
+        // 시도횟수를 하나 증가
+        inputTryCount++
 
         //input : String 을 Int로 변경하자.
         val number = input.toInt() //"256" => 256
@@ -97,6 +103,13 @@ class MainActivity : BaseActivity() {
         //만약 3S 라고 하면 => 정답 맞춘 상황. 축하메세지 + 게임종료
         if ( strikeCount == 3) {
             chatList.add(Chat("CPU", "축하합니다.") )
+
+            //몇번만에 맞췄는지도 채팅으로 표기
+            chatList.add(Chat("CPU", "${inputTryCount}회만에 맞췄습니다."))
+
+            //새로고침
+            mChatAdapter.notifyDataSetChanged()
+
 
             Toast.makeText(mContext, "게임을 종료 합니다.", Toast.LENGTH_SHORT).show()
 
